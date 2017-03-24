@@ -5,6 +5,6 @@ class Error
 {
 	public function	index(Request $request)
 	{
-		return "控制器不存在,请再次输入！！！！！！";
+		return "控制器不存在,请再次输入点点滴滴！！！！！！";
 	}
 }
