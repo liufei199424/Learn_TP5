@@ -1,7 +1,7 @@
 <?php
 namespace app\index\controller;
 use think\Controller;
-use think\Db;
+// use think\Db;
 
 class Index extends Controller
 {
@@ -17,9 +17,7 @@ class Index extends Controller
 
     public function hello($name = 'thinkphp')
     {
-        echo $name;
-        $data = Db::name('data')->find();
-        $this->assign('result', $data);
+        $this->assign('name', $name);
         return $this->fetch();
     }
 
