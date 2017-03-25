@@ -50,4 +50,6 @@ return [
         'hello' => ['index/before_action/hello',['method' => 'get']],
         'data' => ['index/before_action/data',['method' => 'get']],
     ],
+
+    'routeinfo/[:name]$' => 'index/request_test/routeinfo'
 ];
