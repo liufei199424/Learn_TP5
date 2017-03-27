@@ -51,5 +51,14 @@ return [
         'data' => ['index/before_action/data',['method' => 'get']],
     ],
 
-    'routeinfo/[:name]$' => 'index/request_test/routeinfo'
+    'routeinfo/[:name]$' => 'index/request_test/routeinfo',
+
+    '[database]' => [
+        'query' => ['index/database_test/query',['method' => 'get']],
+        'insert' => ['index/database_test/insertdata',['method' => 'get']],
+        'update' => ['index/database_test/update',['method' => 'get']],
+        'delete' => ['index/database_test/delete',['method' => 'get']],
+        'querymethod' => ['index/database_test/querymethod',['method' => 'get']],
+        'sql' => ['index/database_test/sql',['method' => 'get']],
+    ]
 ];
