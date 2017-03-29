@@ -4,6 +4,8 @@ namespace app\index\controller;
 use think\Controller;
 use think\Db;
 
+use	app\index\model\Data;
+
 class DatabaseTest {
 
     public function _empty () {
@@ -116,4 +118,60 @@ class DatabaseTest {
         dump($result);
     }
 
+    public function modeltest () {
+        $data = new Data;
+
+        $data->data = "cc为什么要穿这么性感的裙子杀人！！！";
+        $data->save();
+
+        $row = [
+            'name' => 'fhw',
+            'data' => '那是因为cc是个喜新厌旧的女人'
+        ];
+
+        $data2 = new Data;
+        $data2->data($row);
+        $data2->allowField(true)->save();
+
+        // 批量新增
+        $rows = [
+            ['data' => 'cc是魔女'],
+            ['data' => 'cc是心狠手辣的女人'],
+            ['data' => 'cc是好人'],
+        ];
+
+        $data3 = new Data;
+        $data3->saveAll($rows);
+
+        //  静态方法
+        $row = [
+            'data' => '我想要cc'
+        ];
+
+        $data4 = Data::create($row);
+
+        // 修改
+        $data5 = Data::get(64);
+        $data5->data = "cc很诱人";
+        $data5->save();
+
+        echo $data5->data;
+
+    }
+
+    public function gettest () {
+        $datas = Data::get(['data' => '白虎']);
+        echo $datas->id . " " . $datas->data . "<br>";
+
+        $data = new Data;
+        $datas = $data->where('data', 'like', '%cc%')->select();
+
+        foreach ($datas as $data) {
+            echo $data->id . " " . $data->data . "<br>";
+        }
+
+        $data = new Data;
+        $datas = $data->where('data', 'like', '%cc%')->column('data');
+        dump($datas);
+    }
 }

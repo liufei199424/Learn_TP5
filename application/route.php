@@ -60,5 +60,7 @@ return [
         'delete' => ['index/database_test/delete',['method' => 'get']],
         'querymethod' => ['index/database_test/querymethod',['method' => 'get']],
         'sql' => ['index/database_test/sql',['method' => 'get']],
+        'modeltest' => ['index/database_test/modeltest',['method' => 'get']],
+        'gettest' => ['index/database_test/gettest',['method' => 'get']],
     ]
 ];
