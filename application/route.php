@@ -29,7 +29,7 @@ return [
 
     // 'hello/[:name]$' => 'index/index/hello',
     'index/[:name]$' => 'index/index/index',
-    'hello/[:name]' => 'index/index/hello',
+//     'hello/[:name]' => 'index/index/hello',
     // 'test' => 'index/index/test',
 
     // 定义路由的请求类型和后缀
@@ -62,5 +62,6 @@ return [
         'sql' => ['index/database_test/sql',['method' => 'get']],
         'modeltest' => ['index/database_test/modeltest',['method' => 'get']],
         'gettest' => ['index/database_test/gettest',['method' => 'get']],
+        'transactiontest' => ['index/database_test/transactiontest',['method' => 'get']],
     ]
 ];

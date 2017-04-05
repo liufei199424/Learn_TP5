@@ -121,7 +121,7 @@ class DatabaseTest {
     public function modeltest () {
         $data = new Data;
 
-        $data->data = "cc为什么要穿这么性感的裙子杀人！！！";
+        $data->data = "cc！！！";
         $data->save();
 
         $row = [
@@ -136,7 +136,7 @@ class DatabaseTest {
         // 批量新增
         $rows = [
             ['data' => 'cc是魔女'],
-            ['data' => 'cc是心狠手辣的女人'],
+            ['data' => 'cc是人'],
             ['data' => 'cc是好人'],
         ];
 
@@ -145,14 +145,14 @@ class DatabaseTest {
 
         //  静态方法
         $row = [
-            'data' => '我想要cc'
+            'data' => 'cc呼呼'
         ];
 
         $data4 = Data::create($row);
 
         // 修改
-        $data5 = Data::get(64);
-        $data5->data = "cc很诱人";
+        $data5 = Data::get(7);
+        $data5->data = "cc人";
         $data5->save();
 
         echo $data5->data;
@@ -173,5 +173,23 @@ class DatabaseTest {
         $data = new Data;
         $datas = $data->where('data', 'like', '%cc%')->column('data');
         dump($datas);
+    }
+    
+    // 事务
+    public function transactiontest () {
+        Db::startTrans();
+        
+        try{
+            $data = Data::get(1);
+            echo "{$data->id} {$data->data} \n";
+            $data->data = "一剑光寒照九州 4";
+            $data->save();
+            
+            $data2 = Data::get(123);
+            $data2->delete();
+        } catch (\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+        }
     }
 }
