@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use app\index\model\Data;
+use think\View;
 
 class ViewHtml extends Controller {
     
@@ -16,9 +17,13 @@ class ViewHtml extends Controller {
     public function oneshow () {
         $data = Data::get(['data' => 'cc是人']);
         
-        $this->assign('data', $data);
+        $view = new View([
+            'view_suffix' => 'php'
+        ]);
         
-        return $this->fetch();
+        $view->name = 'thinkphp';
+        $view->data = $data;
+        return $view->fetch();
     }
     
 }
