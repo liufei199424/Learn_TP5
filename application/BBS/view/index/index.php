@@ -9,28 +9,41 @@
 <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
-        <div class="jumbotron">
-        	<h1>欢迎来到BBS系统</h1>
-        	<p>重置窗口大小，查看响应式效果！</p> 
-        </div>
-        <div class="row">
-        	<div class="col-sm-4">
-              	<h3>第一列</h3>
-              	<p>学的不仅是技术，更是梦想！</p>
-              	<p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>
-        	</div>
-            <div class="col-sm-4">
-                <h3>第二列</h3>
-                <p>学的不仅是技术，更是梦想！</p>
-                <p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>
-            </div>
-            <div class="col-sm-4">
-                <h3>第三列</h3>        
-                <p>学的不仅是技术，更是梦想！</p>
-                <p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>
+    <div class="linear">
+        <div id="white_rec">
+            <div>
+                <img id="logo_icon" src="file:///F:/Tp5/Learn_TP5/application/BBS/static/img/cc.jpg">
             </div>
         </div>
-	</div>
+        <img src="file:///F:/Tp5/Learn_TP5/application/BBS/static/img/cc.jpg">
+    </div>
+    <div id="login">
+        <form id="form1" name="form1" method="post" action="/login/loginpost/">
+            <input type="hidden" name="redirect_url" value="" />
+            <div id="namelayer">
+                <span>用户名:</span>
+                <input type="text" name="username" class="inputtext" placeholder="Username" maxlength="20" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+            </div>
+            <div id="passwordlayer">
+                <span>密&nbsp;&nbsp;码:</span>
+                <input type="password" name="password" class="inputtext" placeholder="Password" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+            </div>
+            <div id="submitlayer">
+                <input type="submit" name="login" value=" 登 录 " class="login_submit" />
+            </div>
+        </form>
+    </div>
 </body>
+<script>
+	$(document).ready(function(){
+		$(".inputtext").on("mousemove", function(){
+			var me = $(this);
+			me.addClass('borderbule');
+		});
+		$(".inputtext").on("mouseleave", function(){
+			var me = $(this);
+			me.removeClass('borderbule');
+		});
+	});
+</script>
 </html>
