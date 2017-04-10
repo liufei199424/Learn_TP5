@@ -6,7 +6,7 @@ use think\Controller;
 class Index extends Controller
 {
     public function _initialize() {
-        echo "我是初始化函数<br>";
+        echo "我是初始化函数111<br>";
     }
 
     public function index($name = 'thinkphp')
