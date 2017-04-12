@@ -52,7 +52,7 @@ class Index extends Controller {
         $newuser->data($row);
         $newuser->save();
         
-        $username = Session::get('username');
+        $username = Session::set('username', $username);
         
         return $this->redirect('index/successlogin');
     }

@@ -5,6 +5,7 @@ use think\Controller;
 use think\Db;
 
 use	app\index\model\Data;
+use app\index\model\User;
 
 class DatabaseTest {
 
@@ -13,6 +14,9 @@ class DatabaseTest {
     }
 
     public function query () {
+        $result_user = Db::table('user')->select();
+        dump($result_user);
+        
         $result_find = Db::table('think_data')->where('data','php')->select();
         $result_select = Db::table('think_data')->select();
 
@@ -160,7 +164,10 @@ class DatabaseTest {
     }
 
     public function gettest () {
-        $datas = Data::get(['data' => '白虎']);
+        $user = User::get(['username' => 'fhw']);
+        dump($user);
+        
+        $datas = Data::get(['data' => 'cc是人']);
         echo $datas->id . " " . $datas->data . "<br>";
 
         $data = new Data;
