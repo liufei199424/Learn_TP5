@@ -5,7 +5,11 @@
 <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php
-    $path = "F:/Tp5/Learn_TP5/application/BBS/view";
+	if (PATH_SEPARATOR == ':') {
+		$path = "/home/fhw/tp5/Learn_TP5/application/bbs/view";
+	} else {
+		$path = "F:/Tp5/Learn_TP5/application/BBS/view";
+	}
     include $path . "/_head.php";
 ?>
 </head>
@@ -52,7 +56,10 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							 <a href="#">{$username}</a>
+							 <a href="#">{$user->username}</a>
+						</li>
+                        <li>
+							 <a href="/bbs/index/quit">退出</a>
 						</li>
 						<li>
 							 <a href="#">设置</a>
