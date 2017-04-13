@@ -8,7 +8,11 @@ use app\bbs\model\User;
 class Index extends Controller {
 
     public function index () {
-        $this->view->errormsg = '';
+        $request = Request::instance();
+        
+        $errormsg = $request->param('errormsg', '');
+        
+        $this->view->errormsg = $errormsg;
         
         return $this->fetch();
     }
@@ -19,14 +23,28 @@ class Index extends Controller {
         $username = $request->param('username', '');
         $password = $request->param('password', '');
 
-        if ($username == 'fanghanwen' && $password == 'liufei') {
-            Session::set('username',$username);
+        $user = User::get(['username' => $username, 'password' => $password]);
+        
+        if ($user instanceof User) {
+            Session::set('user',$user);
 
             $this->success('登陆成功','index/successlogin',3);
+        } else {
+            $this->redirect('index/index', ['errormsg' => '用户名或密码错误']);
         }
+    }
+    
+    public function quit () {
+        $this->redirect('index/index');
     }
 
     public function register () {
+        $request = Request::instance();
+        
+        $errormsg = $request->param('errormsg', '');
+        
+        $this->view->errormsg = $errormsg;
+        
         return $this->fetch();
     }
 
@@ -39,30 +57,29 @@ class Index extends Controller {
 
         $user = User::get(['username' => $username]);
         if ($user instanceof User) {
-            echo '用户名重复';
+            $this->redirect('index/register', ['errormsg' => '用户名重复']);
         }
 
         if ($password != $affirmpassword) {
-            echo '密码不一致';
+            $this->redirect('index/register', ['errormsg' => '密码不一致']);
         }
 
-        $newuser = new User();
         $row = [
             'username' =>  $username,
             'password' => $password
         ];
-        $newuser->data($row);
-        $newuser->save();
+        
+        $user = User::createByBiz($row);
 
-        $username = Session::set('username', $username);
+        Session::set('user', $user);
 
         return $this->redirect('index/successlogin');
     }
 
     public function successlogin () {
-        $username = Session::get('username');
+        $user = Session::get('user');
 
-        $this->view->username = $username;
+        $this->view->user = $user;
 
         return $this->fetch();
     }

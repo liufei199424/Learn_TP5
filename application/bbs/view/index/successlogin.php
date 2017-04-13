@@ -59,7 +59,7 @@
 							 <a href="#">{$user->username}</a>
 						</li>
                         <li>
-							 <a href="/bbs/index/quit">退出登陆</a>
+							 <a href="/index.php/bbs/index/quit">退出登陆</a>
 						</li>
 						<li>
 							 <a href="#">设置</a>
