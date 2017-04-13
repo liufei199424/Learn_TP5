@@ -1,9 +1,9 @@
 <?php
-namespace app\BBS\controller;
+namespace app\bbs\controller;
 use think\Controller;
 use think\Request;
 use think\Session;
-use app\index\model\User;
+use app\bbs\model\User;
 
 class Index extends Controller {
 
