@@ -8,6 +8,8 @@ use app\bbs\model\User;
 class Index extends Controller {
 
     public function index () {
+        $this->view->errormsg = '';
+        
         return $this->fetch();
     }
 
