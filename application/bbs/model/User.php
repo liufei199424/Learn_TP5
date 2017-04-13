@@ -1,6 +1,6 @@
 <?php
 
-namespace	app\bbs\model;
+namespace	app\BBS\model;
 use	think\Model;
 
 class User extends Model

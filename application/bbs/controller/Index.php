@@ -3,16 +3,11 @@ namespace app\BBS\controller;
 use think\Controller;
 use think\Request;
 use think\Session;
-use app\bbs\model\User;
+use app\index\model\User;
 
 class Index extends Controller {
 
     public function index () {
-        $request = Request::instance();
-
-        $errormsg = $request->param('errormsg', '');
-        $this->view->errormsg = $errormsg;
-
         return $this->fetch();
     }
 
@@ -22,18 +17,11 @@ class Index extends Controller {
         $username = $request->param('username', '');
         $password = $request->param('password', '');
 
-        $user = User::get(['username' => $username,'password' => $password]);
-        if ($user instanceof User) {
+        if ($username == 'fanghanwen' && $password == 'liufei') {
             Session::set('username',$username);
 
             $this->success('登陆成功','index/successlogin',3);
-        } else {
-            $this->redirect('index/index', ['errormsg' => '账号或密码错误']);
         }
-    }
-
-    public function quit () {
-        $this->redirect('index/index');
     }
 
     public function register () {
@@ -41,9 +29,6 @@ class Index extends Controller {
     }
 
     public function registerpost () {
-        $usertest = new User();
-        $usertest->test();
-
         $request = Request::instance();
 
         $username = $request->param('username', '');
@@ -59,22 +44,23 @@ class Index extends Controller {
             echo '密码不一致';
         }
 
+        $newuser = new User();
         $row = [
             'username' =>  $username,
             'password' => $password
         ];
-        $user = User::createByBiz($row);
-        Session::set('user', $user);
+        $newuser->data($row);
+        $newuser->save();
+
+        $username = Session::set('username', $username);
 
         return $this->redirect('index/successlogin');
     }
 
     public function successlogin () {
-        $user = Session::get('user');
+        $username = Session::get('username');
 
-        $this->view->user = $user;
-        $user->last_login_time = date('Y-m-d H:i:s');
-        $user->save();
+        $this->view->username = $username;
 
         return $this->fetch();
     }
