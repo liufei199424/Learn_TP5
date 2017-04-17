@@ -16,7 +16,7 @@ class DatabaseTest {
     public function query () {
         $result_user = Db::table('user')->select();
         dump($result_user);
-        
+
         $result_find = Db::table('think_data')->where('data','php')->select();
         $result_select = Db::table('think_data')->select();
 
@@ -166,7 +166,7 @@ class DatabaseTest {
     public function gettest () {
         $user = User::get(['username' => 'fhw']);
         dump($user);
-        
+
         $datas = Data::get(['data' => 'cc是人']);
         echo $datas->id . " " . $datas->data . "<br>";
 
@@ -181,17 +181,17 @@ class DatabaseTest {
         $datas = $data->where('data', 'like', '%cc%')->column('data');
         dump($datas);
     }
-    
+
     // 事务
     public function transactiontest () {
         Db::startTrans();
-        
+
         try{
             $data = Data::get(1);
             echo "{$data->id} {$data->data} \n";
             $data->data = "一剑光寒照九州 4";
             $data->save();
-            
+
             $data2 = Data::get(123);
             $data2->delete();
         } catch (\Exception $e) {

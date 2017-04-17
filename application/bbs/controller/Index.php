@@ -139,6 +139,6 @@ class Index extends Controller {
 
         $this->view->list = $list;
 
-        $this->fetch();
+        return $this->fetch();
     }
 }
