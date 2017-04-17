@@ -23,6 +23,24 @@
 </style>
 </head>
 <body>
+	<?php
+		if ($errormsg != '') {
+		?>
+			<div class="container">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-dismissable alert-warning">
+							 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							<h4>
+								警告
+							</h4> <strong>{$errormsg}</strong>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php
+		}
+	?>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column centerdiv">

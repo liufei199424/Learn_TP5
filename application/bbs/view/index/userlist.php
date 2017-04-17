@@ -1,11 +1,9 @@
-<?php
-use think\Session;
-?>
 <!DOCTYPE html>
 <html>
 <head>
 <title>BBS系统</title>
-<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="viewport"
+	content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php
 	if (PATH_SEPARATOR == ':') {
@@ -15,9 +13,16 @@ use think\Session;
 	}
     include $path . "/_head.php";
 ?>
+<style type="text/css">
+.centerdiv {
+ 	position: absolute;
+	left: 20%;
+	top: 35%;
+	border: solid 0px #ccc;
+}
+</style>
 </head>
 <body>
-<div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<nav class="navbar navbar-default" role="navigation">
@@ -37,11 +42,8 @@ use think\Session;
 						<li>
 							 <a href="#">{$user->username}</a>
 						</li>
-                        <li>
-							 <a href="/index.php/bbs/index/quit">退出登陆</a>
-						</li>
 						<li>
-							 <a href="/index.php/bbs/index/userlist">用户列表</a>
+							 <a href="/index.php/bbs/index/quit">退出登陆</a>
 						</li>
 						<li>
 							 <a href="/index.php/bbs/index/modifypassword?userid={$user->id}">设置</a>
@@ -51,8 +53,41 @@ use think\Session;
 			</nav>
 		</div>
 	</div>
-</div>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>用户名</th>
+							<th>最后一次登录时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+							foreach ($list as $user) {
+							?>
+								<tr class="info">
+									<td>{$user->id}</td>
+									<td>{$user->username}</td>
+									<td>{$user->last_login_time}</td>
+									<td>
+										<a href="#">修改</a>
+										<a href="#">删除</a>
+									</td>
+								</tr>
+							<?php
+							}
+						?>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </body>
-<script type="text/javascript">
+<script>
 </script>
 </html>

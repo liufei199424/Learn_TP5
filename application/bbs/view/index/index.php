@@ -33,7 +33,7 @@
 							 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 							<h4>
 								警告
-							</h4> <strong>用户名或者密码错误!</strong>
+							</h4> <strong>{$errormsg}!</strong>
 						</div>
 					</div>
 				</div>
