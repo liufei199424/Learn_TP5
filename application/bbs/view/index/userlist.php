@@ -86,11 +86,16 @@
 							<?php
 							}
 						?>
+						<tr>
+							<td colspan="4">
+								<?php
+                					include $path . "/_pagelink.php";
+                				?>
+							</td>
+						</tr>
 					</tbody>
 				</table>
-				<?php
-					include $path . "/_pagelink.php";
-				?>
+				
 			</div>
 		</div>
 	</div>

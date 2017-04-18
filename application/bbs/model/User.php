@@ -40,7 +40,7 @@ class User extends Model
 		return $user;
 	}
 	
-	public static function getTableName () {
-	    return self::$tablename;
+	public function getTableName () {
+	    return $this->table;
 	}
 }

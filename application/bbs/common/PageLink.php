@@ -1,5 +1,5 @@
 <?php
-namespace app\bbs\controller;
+namespace app\bbs\common;
 
 class PageLink {
     public $sum;
@@ -17,10 +17,10 @@ class PageLink {
 
     // 总页数
     public function getTotalPage () {
-        if ($this->$sum % $this->pagesize == 0) {
-            return $sum / $pagesize;
+        if ($this->sum % $this->pagesize == 0) {
+            return $this->sum / $this->pagesize;
         } else {
-            return floor($sum / $pagesize) + 1;
+            return floor($this->sum / $this->pagesize) + 1;
         }
     }
 }
