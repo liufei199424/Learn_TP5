@@ -17,7 +17,7 @@ class PageLink {
 
     // 总页数
     public function getTotalPage () {
-        if ($sum % $pagesize == 0) {
+        if ($this->$sum % $this->pagesize == 0) {
             return $sum / $pagesize;
         } else {
             return floor($sum / $pagesize) + 1;

@@ -15,6 +15,9 @@ class User extends Model
 
     //	设置当前模型对应的完整数据表名称
 	protected $table = 'user';
+	
+	// 用来查询
+	protected static $tablename = 'user';
 
 	public static function createByBiz (array $row) {
 		$default = [];
@@ -35,5 +38,9 @@ class User extends Model
 		$user->save();
 
 		return $user;
+	}
+	
+	public static function getTableName () {
+	    return self::$tablename;
 	}
 }

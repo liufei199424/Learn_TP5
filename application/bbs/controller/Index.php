@@ -4,6 +4,8 @@ use think\Controller;
 use think\Request;
 use think\Session;
 use app\bbs\model\User;
+use think\Db;
+use app\bbs\dao\Dao;
 
 class Index extends Controller {
 
@@ -131,14 +133,53 @@ class Index extends Controller {
     }
 
     public function userlist () {
-        $user = Session::get('user');
-
-        $this->view->user = $user;
+        $request = Request::instance();
+        
+        $pagenum = $request->param('pagenum', 1);
+        $pagesize = $request->param('pagesize', 5);
 
         $list = User::all();
-
         $this->view->list = $list;
+        
+        $user = Session::get('user');
+        $this->view->user = $user;
 
         return $this->fetch();
+    }
+    
+    public function test () {
+//         $user = User::get(function($query){
+//             $query->where(['username' => '素还真']);
+//         });
+        
+        $sql = "select id from user ";
+        $userids = Db::query($sql);
+        
+        $ids = [];
+        foreach ($userids as $userid) {
+            $ids[] = $userid['id'];
+        }
+
+        $user2 = User::all($ids);
+        
+//         print_r($user1);
+        
+//         dump($user);
+//         dump($user1);
+        foreach ($user2 as $a) {
+            echo $a->username . $a->password . '<br>';
+        }
+    }
+    
+    public function dao () {
+        $cond = " and username = :username and login_fail_cnt > :cnt ";
+        $bind = [
+            ':username' => '素还真',
+            ':cnt' => 2
+        ];
+        
+        $user = Dao::getEntityByCond('User', $cond, $bind);
+        
+        echo $user->username;
     }
 }
