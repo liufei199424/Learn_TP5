@@ -3,14 +3,22 @@
     <li>
          <a class="page" id="page-min" href="<?=$pagelink->url?>/pagenum/1/site/min">首页</a>
     </li>
-    <?php 
-        $totalpage = $pagelink->getTotalPage();
-        for($i = 1; $i <= $totalpage; $i ++) {
-            ?>
-                <li>
-                     <a class="page" id="page-<?= $i?>" href="<?=$pagelink->url?>/pagenum/<?= $i?>/site/<?= $i?>"><?= $i?></a>
-                </li>
-            <?php
+    <?php
+        $pages = $pagelink->getPages();
+        foreach ($pages as $a) {
+            if ($a != '...') {
+                ?>
+                    <li>
+                         <a class="page" id="page-<?= $a?>" href="<?=$pagelink->url?>/pagenum/<?= $a?>/site/<?= $a?>"><?= $a?></a>
+                    </li>
+                <?php
+            } else {
+                ?>
+                    <li>
+                         <a href="#"><?= $a?></a>
+                    </li>
+                <?php
+            }
         }
     ?>
     <li>
