@@ -148,7 +148,7 @@ class Index extends Controller
         $request = Request::instance();
 
         $pagenum = $request->param('pagenum', 1);
-        $pagesize = $request->param('pagesize', 1);
+        $pagesize = $request->param('pagesize', 10);
         $site = $request->param('site', '');
 
         $cond = "";

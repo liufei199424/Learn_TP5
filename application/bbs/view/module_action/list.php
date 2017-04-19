@@ -13,6 +13,8 @@
 	}
     include $path . "/_head.php";
 ?>
+<style type="text/css">
+</style>
 </head>
 <body>
 	<div class="container">
@@ -22,39 +24,36 @@
 	</div>
 	<div class="container">
 		<div class="row clearfix">
+    		<div class="col-md-12 column" style="margin-bottom: 8px;">
+    			 <a class="btn btn-default btn-success">+ 新增模块</a>
+    		</div>
 			<div class="col-md-12 column">
 				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th>id</th>
-							<th>用户名</th>
-							<th>最后一次登录时间</th>
+							<th>标题</th>
+							<th>备注</th>
 							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php
-							foreach ($list as $user) {
-							?>
-								<tr class="info">
-									<td>{$user->id}</td>
-									<td>{$user->username}</td>
-									<td>{$user->last_login_time}</td>
-									<td>
-										<a href="#">修改</a>
-										<a href="#">删除</a>
-									</td>
-								</tr>
-							<?php
-							}
-						?>
 						<tr>
-							<td colspan="4">
-								<?php
-                					include $path . "/_pagelink.php";
-                				?>
+							<td>1</td>
+							<td>生活</td>
+							<td>有关生活</td>
+							<td>
+								<a href="#">修改</a>
+								<a href="#">删除</a>
 							</td>
 						</tr>
+<!-- 						<tr> -->
+<!-- 							<td colspan="4"> -->
+								<?php
+//                 					//include $path . "/_pagelink.php";
+//                 				?>
+<!-- 							</td> -->
+<!-- 						</tr> -->
 					</tbody>
 				</table>
 				
