@@ -20,14 +20,14 @@
 					<li>
 						 <a href="#"><?= $user->username ?></a>
 					</li>
-					<?php 
+					<?php
 					   if ($user->username == '剑君十二恨') {
 				       ?>
         					<li>
-        						 <a href="/index.php/bbs/user_action/list">用户列表</a>
+        						 <a href="/index.php/bbs/user_action/ulist">用户列表</a>
         					</li>
         					<li>
-        						 <a href="/index.php/bbs/module_action/list">模块列表</a>
+        						 <a href="/index.php/bbs/module_action/mlist">模块列表</a>
         					</li>
 				       <?php
 					   }

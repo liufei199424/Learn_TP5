@@ -75,20 +75,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		hhhhhhhhhhh
-	</div>
 </body>
 <script>
-	$(document).ready(function(){
-		$(".inputtext").on("mousemove", function(){
-			var me = $(this);
-			me.addClass('borderbule');
-		});
-		$(".inputtext").on("mouseleave", function(){
-			var me = $(this);
-			me.removeClass('borderbule');
-		});
-	});
 </script>
 </html>

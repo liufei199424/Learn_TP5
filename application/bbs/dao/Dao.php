@@ -60,12 +60,15 @@ class Dao {
             $pagenum = $totalpage;
         }
 
+        if ($pagenum < 1) {
+            $pagenum = 1;
+        }
+
         $limitstr = " limit :startsize, :size ";
         $bind['startsize'] = ($pagenum - 1) * $pagesize;
         $bind['size'] = $pagesize;
 
         $sql = "select id from {$table} where 1 = 1 " . $cond . $limitstr;
-
         $entityids = Db::query($sql, $bind);
 
         $ids = [];

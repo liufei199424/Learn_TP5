@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="container">
-    	<?php 
+    	<?php
     	   include $path . "/_title.php";
     	?>
     </div>
@@ -24,20 +24,20 @@
     		<div class="col-md-2 column">
     			<div class="panel-group">
     				<div class="panel panel-default">
-    					<div class="panel-heading select" data-userid="<?= $user->id ?>">
+    					<div class="panel-heading select" data-type="password" data-userid="<?= $user->id ?>">
     						 <span class="panel-title collapsed">修改密码</span>
     					</div>
     				</div>
     				<div class="panel panel-default">
-    					<div class="panel-heading select">
+    					<div class="panel-heading select" data-type="post">
     						 <span class="panel-title collapsed">帖子</span>
     					</div>
     				</div>
     			</div>
     		</div>
-    		<div class="col-md-10 column" style="background-color:#e7e7e7">
+    		<div class="col-md-10 column">
     			<div id="showhtml">
-        			
+
     			</div>
     		</div>
     	</div>
@@ -50,18 +50,21 @@
 			$(this).attr('style', 'background-color: #008DB9;color:#fff');
 
 			var me = $(this);
-			var userid = me.data("userid");
-			$.ajax({
-				"type" : "post",
-				"data" : {
-					userid : userid
-				},
-				"dataType" : "html",
-				"url" : "/index.php/bbs/user_action/modifypassword",
-				"success" : function(data) {
-					$("#showhtml").html(data);
-				}
-			});
+			var type = me.data('type');
+			if (type == 'password') {
+				var userid = me.data("userid");
+				$.ajax({
+					"type" : "post",
+					"data" : {
+						userid : userid
+					},
+					"dataType" : "html",
+					"url" : "/index.php/bbs/user_action/modifypassword",
+					"success" : function(data) {
+						$("#showhtml").html(data);
+					}
+				});
+			}
 		});
 	});
 </script>

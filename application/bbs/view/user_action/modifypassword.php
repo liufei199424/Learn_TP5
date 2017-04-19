@@ -1,33 +1,47 @@
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column centerdiv">
-			<form class="form-horizontal" role="form" action="/index.php/bbs/index/modifypasswordPost" method="post">
-				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
-					<div class="col-sm-2">
-						<span class="form-control">{$user->username}</span>
-						<input type="hidden" name="userid" class="form-control" id="inputEmail3" value="{$user->id}"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputPassword3" class="col-sm-2 control-label">原密码</label>
-					<div class="col-sm-2">
-						<input type="password" name="oldpassword" class="form-control" id="inputPassword3" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputPassword3" class="col-sm-2 control-label">新密码</label>
-					<div class="col-sm-2">
-						<input type="password" name="newpassword" class="form-control" id="inputPassword4" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">修改</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
+<form action="/index.php/bbs/user_action/modifypasswordpost" method="post">
+	<table class="table table-bordered">
+		<tbody>
+			<tr class="warn">
+				<td colspan="10">
+					<?php
+						$info = '';
+						if ($errormsg) {
+							$info = $errormsg;
+						} else {
+							$info = "修改密码";
+						}
+					?>
+					<span class="col-md-12" lass="form-control">{$info}</span>
+				</td>
+			</tr>
+			<tr class="success">
+				<th width="80">用户名</th>
+				<td>
+					<span class="col-md-12" lass="form-control">{$user->username}</span>
+					<input type="hidden"name="userid" value="{$user->id}"/>
+				</td>
+			</tr>
+			<tr class="success">
+				<th>
+					原密码
+				</th>
+				<td>
+					<input type="password" name="oldpassword"/>
+				</td>
+			</tr>
+			<tr class="success">
+				<th>
+					新密码
+				</th>
+				<td>
+					<input type="password" name="newpassword"/>
+				</td>
+			</tr>
+			<tr class="success">
+				<td colspan="10">
+					<input type="submit" class="btn btn-success" value="提交">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>

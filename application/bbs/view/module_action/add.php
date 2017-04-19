@@ -18,41 +18,41 @@
 </head>
 <body>
 	<div class="container">
-    	<?php 
+    	<?php
     	   include $path . "/_title.php";
     	?>
 	</div>
 	<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<form action="/index.php/bbs/index/addpost" method="post">
-    			<table class="table table-bordered">
-    				<tbody>
-    					<tr class="success">
-    						<th>title</th>
-    						<td>
-    							<input name="title">
-    						</td>
-    					</tr>
-    					<tr class="success">
-    						<th>
-    							content
-    						</th>
-    						<td>
-    							<textarea rows="5" cols="60" name="content"></textarea>
-    						</td>
-    					</tr>
-    					<tr class="success">
-    						<td colspan="10">
-    							<input type="submit" class="btn btn-success" value="提交">
-    						</td>
-    					</tr>
-    				</tbody>
-    			</table>
-			</form>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<form action="/index.php/bbs/module_action/addpost" method="post">
+	    			<table class="table table-bordered">
+	    				<tbody>
+	    					<tr class="success">
+	    						<th>title</th>
+	    						<td>
+	    							<input name="title">
+	    						</td>
+	    					</tr>
+	    					<tr class="success">
+	    						<th>
+	    							content
+	    						</th>
+	    						<td>
+	    							<textarea rows="5" cols="60" name="content"></textarea>
+	    						</td>
+	    					</tr>
+	    					<tr class="success">
+	    						<td colspan="10">
+	    							<input type="submit" class="btn btn-success" value="提交">
+	    						</td>
+	    					</tr>
+	    				</tbody>
+	    			</table>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
 </body>
 <script>
 </script>
