@@ -25,7 +25,7 @@
 	<div class="container">
 		<div class="row clearfix">
     		<div class="col-md-12 column" style="margin-bottom: 8px;">
-    			 <a class="btn btn-default btn-success">+ 新增模块</a>
+    			 <a class="btn btn-default btn-success" href="/index.php/bbs/module_action/add">+ 新增模块</a>
     		</div>
 			<div class="col-md-12 column">
 				<table class="table table-bordered">
@@ -38,22 +38,28 @@
 						</tr>
 					</thead>
 					<tbody>
+						<?php
+							foreach ($list as $module) {
+							?>
+								<tr class="info">
+									<td>{$module->id}</td>
+									<td>{$module->title}</td>
+									<td>{$module->content}</td>
+									<td>
+										<a href="#">修改</a>
+										<a href="#">删除</a>
+									</td>
+								</tr>
+							<?php
+							}
+						?>
 						<tr>
-							<td>1</td>
-							<td>生活</td>
-							<td>有关生活</td>
-							<td>
-								<a href="#">修改</a>
-								<a href="#">删除</a>
+							<td colspan="4">
+								<?php
+                					include $path . "/_pagelink.php";
+                				?>
 							</td>
 						</tr>
-<!-- 						<tr> -->
-<!-- 							<td colspan="4"> -->
-								<?php
-//                 					//include $path . "/_pagelink.php";
-//                 				?>
-<!-- 							</td> -->
-<!-- 						</tr> -->
 					</tbody>
 				</table>
 				

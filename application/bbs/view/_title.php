@@ -15,13 +15,16 @@
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
+						 <a href="/index.php/bbs/index/successlogin">首页</a>
+					</li>
+					<li>
 						 <a href="#"><?= $user->username ?></a>
 					</li>
 					<?php 
 					   if ($user->username == '剑君十二恨') {
 				       ?>
         					<li>
-        						 <a href="/index.php/bbs/index/userlist">用户列表</a>
+        						 <a href="/index.php/bbs/user_action/list">用户列表</a>
         					</li>
         					<li>
         						 <a href="/index.php/bbs/module_action/list">模块列表</a>
@@ -33,7 +36,7 @@
 						 <a href="/index.php/bbs/index/quit">退出登陆</a>
 					</li>
 					<li>
-						 <a href="/index.php/bbs/index/modifypassword?userid=<?=$user->id?>">设置</a>
+						 <a href="/index.php/bbs/user_action/mysetting">设置</a>
 					</li>
 				</ul>
 			</div>

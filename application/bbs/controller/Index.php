@@ -8,10 +8,16 @@ use think\Session;
 use app\bbs\model\User;
 use app\bbs\dao\Dao;
 use app\bbs\common\PageLink;
+use app\bbs\model\Module;
 
 class Index extends Controller
 {
 
+    public function _initialize () {
+        $user = Session::get('user');
+        $this->view->user = $user;
+    }
+    
     public function index () {
         $request = Request::instance();
 
@@ -44,8 +50,7 @@ class Index extends Controller
                 $user->login_fail_cnt ++;
                 $user->save();
             }
-            $this->redirect('index/index', [
-                'errormsg' => '用户名或密码错误']);
+            $this->redirect('index/index', ['errormsg' => '用户名或密码错误']);
         }
     }
 
@@ -94,13 +99,10 @@ class Index extends Controller
     }
 
     public function successlogin () {
-        $user = Session::get('user');
-
-        $user->last_login_time = date('Y-m-d H:i:s');
-        $user->save();
-
-        $this->view->user = $user;
-
+        $modules = Dao::getListEntityByCond(new Module(), '', []);
+        
+        $this->view->modules = $modules;
+        
         return $this->fetch();
     }
 
@@ -143,79 +145,4 @@ class Index extends Controller
 
         return $this->redirect('index/successlogin');
     }
-
-    public function userlist () {
-        $request = Request::instance();
-
-        $pagenum = $request->param('pagenum', 1);
-        $pagesize = $request->param('pagesize', 10);
-        $site = $request->param('site', '');
-
-        $cond = "";
-        $bind = [];
-        $users = Dao::getListEntityByCond4Page(new User(), $pagenum, $pagesize, $cond, $bind);
-
-        $cntsql = "select count(*) from user where 1 = 1 " . $cond;
-        $cnt = Dao::queryValue($cntsql, $bind);
-        $url = "/index.php/bbs/index/userlist";
-        $pagelink = PageLink::create($cnt, $pagenum, $pagesize, $url);
-
-        $user = Session::get('user');
-        $this->view->list = $users;
-        $this->view->user = $user;
-        $this->view->pagelink = $pagelink;
-        $this->view->pagenum = $pagenum;
-        $this->view->site = $site;
-
-        return $this->fetch();
-    }
-
-//     public function dao () {
-//         $cond = " and username = :username and login_fail_cnt > :cnt ";
-//         $bind = [
-//             'username' => '素还真',
-//             'cnt' => 2];
-
-//         $user = Dao::getEntityByCond(new User(), $cond, $bind);
-
-//         echo $user->username;
-//     }
-
-//     public function list () {
-//         $cond = " and login_fail_cnt < :cnt ";
-//         $bind = [];
-//         $bind['cnt'] = 3;
-
-//         $users = Dao::getListEntityByCond(new User(), $cond, $bind);
-
-//         foreach ($users as $a) {
-//             echo $a->username . "=>" . $a->password . '<br>';
-//         }
-//     }
-
-//     public function list4page () {
-//         $cond = " and login_fail_cnt < :cnt ";
-//         $bind = [];
-//         $bind['cnt'] = 4;
-
-//         $users = Dao::getListEntityByCond4Page(new User(), 3, 2, $cond, $bind);
-
-//         foreach ($users as $a) {
-//             echo $a->id . "=>" . $a->username . "=>" . $a->password . '<br>';
-//         }
-//     }
-
-//     public function load4page () {
-//         $sql = "select id
-//                 from user
-//                 where login_fail_cnt < :cnt ";
-//         $bind = [];
-//         $bind['cnt'] = 4;
-
-//         $users = Dao::loadEntityList4Page(new User(), 1, 2, $sql, $bind);
-
-//         foreach ($users as $a) {
-//             echo $a->id . "=>" . $a->username . "=>" . $a->password . '<br>';
-//         }
-//     }
 }

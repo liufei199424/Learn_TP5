@@ -18,7 +18,10 @@ class Module extends Model {
     public static function createByBiz (array $row) {
         $default = [];
     
-        
+        $default['createtime'] = date('Y-m-d H:i:s');
+		$default['updatetime'] = date('Y-m-d H:i:s');
+		$default['title'] = '';
+		$default['content'] = '';
     
         $row += $default;
     
