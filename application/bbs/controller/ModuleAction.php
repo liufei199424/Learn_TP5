@@ -8,6 +8,7 @@ use think\Request;
 use app\bbs\model\Module;
 use app\bbs\dao\Dao;
 use app\bbs\common\PageLink;
+use app\bbs\model\Post;
 
 class ModuleAction extends Controller {
 
@@ -56,5 +57,37 @@ class ModuleAction extends Controller {
         $module = Module::createByBiz($row);
 
         $this->redirect('module_action/mlist');
+    }
+    
+    public function postlist () {
+        $request = Request::instance();
+
+        $pagenum = $request->param('pagenum', 1);
+        $pagesize = $request->param('pagesize', 10);
+        $site = $request->param('site', '');
+        
+        $moduleid = $request->param('moduleid', 0);
+        
+        $cond = "";
+        $bind = [];
+        
+        if ($moduleid) {
+            $cond = " and moduleid = :moduleid ";
+            $bind['moduleid'] = $moduleid;
+        }
+        
+        $posts = Dao::getListEntityByCond4Page(new Post(), $pagenum, $pagesize, $cond, $bind);
+        
+        $cntsql = "select count(*) from post where 1 = 1 " . $cond;
+        $cnt = Dao::queryValue($cntsql, $bind);
+        $url = "#";
+        $pagelink = PageLink::create($cnt, $pagenum, $pagesize, $url);
+
+        $this->view->list = $posts;
+        $this->view->pagelink = $pagelink;
+        $this->view->pagenum = $pagenum;
+        $this->view->site = $site;
+
+        return $this->fetch();
     }
 }

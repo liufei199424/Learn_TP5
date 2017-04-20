@@ -29,7 +29,7 @@
     					</div>
     				</div>
     				<div class="panel panel-default">
-    					<div class="panel-heading select" data-type="post">
+    					<div class="panel-heading select" data-type="post" data-userid="<?= $user->id ?>>
     						 <span class="panel-title collapsed">帖子</span>
     					</div>
     				</div>
@@ -60,6 +60,20 @@
 					},
 					"dataType" : "html",
 					"url" : "/index.php/bbs/user_action/modifypassword",
+					"success" : function(data) {
+						$("#showhtml").html(data);
+					}
+				});
+			}
+			if (type == 'post') {
+				var userid = me.data("userid");
+				$.ajax({
+					"type" : "post",
+					"data" : {
+						userid : userid
+					},
+					"dataType" : "html",
+					"url" : "/index.php/bbs/user_action/postlist",
 					"success" : function(data) {
 						$("#showhtml").html(data);
 					}

@@ -6,6 +6,7 @@ use think\Controller;
 use think\Session;
 use think\Request;
 use app\bbs\model\User;
+use app\bbs\model\Post;
 use app\bbs\dao\Dao;
 use app\bbs\common\PageLink;
 
@@ -62,7 +63,7 @@ class UserAction extends Controller {
         return $this->fetch();
     }
 
-    public function modifypasswordPost () {
+    public function modifypasswordpost () {
         $request = Request::instance();
 
         $userid = $request->param('userid', 0);
@@ -71,20 +72,41 @@ class UserAction extends Controller {
 
         $user = User::get($userid);
         if ($user->password != $oldpassword) {
-            $this->redirect('user_action/mysetting', [
-                    'userid' => $user->id,
-                    'errormsg' => '原密码错误']);
-        } else
-            if ($oldpassword == $newpassword) {
-                $this->redirect('user_action/mysetting', [
-                        'userid' => $user->id,
-                        'errormsg' => '新密码与原密码一样']);
+            return "原密码错误";
+        } else {
+            if ($newpassword == $oldpassword) {
+                return "新密码与原密码一样";
             }
+        }
         $user->password = $newpassword;
         $user->save();
 
         Session::set('user', $user);
 
-        return $this->redirect('user_action/mysetting');
+        return "修改成功";
+    }
+    
+    public function postlist () {
+        $request = Request::instance();
+
+        $pagenum = $request->param('pagenum', 1);
+        $pagesize = $request->param('pagesize', 10);
+        $site = $request->param('site', '');
+
+        $cond = "";
+        $bind = [];
+        $posts = Dao::getListEntityByCond4Page(new Post(), $pagenum, $pagesize, $cond, $bind);
+
+        $cntsql = "select count(*) from post where 1 = 1 " . $cond;
+        $cnt = Dao::queryValue($cntsql, $bind);
+        $url = "#";
+        $pagelink = PageLink::create($cnt, $pagenum, $pagesize, $url);
+
+        $this->view->list = $posts;
+        $this->view->pagelink = $pagelink;
+        $this->view->pagenum = $pagenum;
+        $this->view->site = $site;
+
+        return $this->fetch();
     }
 }

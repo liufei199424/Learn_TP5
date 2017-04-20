@@ -7,7 +7,6 @@ use think\Request;
 use think\Session;
 use app\bbs\model\User;
 use app\bbs\dao\Dao;
-use app\bbs\common\PageLink;
 use app\bbs\model\Module;
 
 class Index extends Controller

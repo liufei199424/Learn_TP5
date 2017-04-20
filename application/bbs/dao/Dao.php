@@ -23,6 +23,10 @@ class Dao {
         foreach ($entityids as $userid) {
             $ids[] = $userid['id'];
         }
+        
+        if (! $ids) {
+            return [];
+        }
 
         return $entity->all($ids);
     }
@@ -39,6 +43,10 @@ class Dao {
         $ids = [];
         foreach ($entityids as $userid) {
             $ids[] = $userid['id'];
+        }
+        
+        if (! $ids) {
+            return [];
         }
 
         return $entity->all($ids);
@@ -76,6 +84,10 @@ class Dao {
             $ids[] = $userid['id'];
         }
 
+        if (! $ids) {
+            return [];
+        }
+        
         return $entity->all($ids);
     }
 
@@ -93,6 +105,10 @@ class Dao {
             $ids[] = $userid['id'];
         }
 
+        if (! $ids) {
+            return [];
+        }
+        
         return $entity->all($ids);
     }
 
