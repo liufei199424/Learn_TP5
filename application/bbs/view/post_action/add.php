@@ -35,7 +35,7 @@
 		<tr class="success">
 			<th>title</th>
 			<td>
-				<input id="title_post" name="title">
+				<input class="col-md-6" id="title_post" name="title">
 			</td>
 		</tr>
 		<tr class="success">

@@ -23,6 +23,17 @@
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
+				<div class="mt10" style="background-color: #ebf1f7;margin: 20px 0px;padding : 20px;border:1px solid #d0d9e3 ">
+					<form action="/index.php/bbs/user_action/ulist" method="get">
+    					<label for="user_name">用户名</label>
+    					<input id="user_name" name="username" value="<?= $username ?>" >					
+    					<input type="submit" class="btn btn-success" value="搜索">					
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
 				<table class="table table-bordered">
 					<thead>
 						<tr>

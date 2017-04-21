@@ -27,9 +27,17 @@ class UserAction extends Controller {
         $pagenum = $request->param('pagenum', 1);
         $pagesize = $request->param('pagesize', 10);
         $site = $request->param('site', '');
-
+        
+        $username = $request->param('username', '');
+        
         $cond = "";
         $bind = [];
+        
+        if ($username) {
+            $cond .= " and username like :username ";
+            $bind['username'] = "%{$username}%";
+        }
+
         $users = Dao::getListEntityByCond4Page(new User(), $pagenum, $pagesize, $cond, $bind);
 
         $cntsql = "select count(*) from user where 1 = 1 " . $cond;
@@ -41,6 +49,7 @@ class UserAction extends Controller {
         $this->view->pagelink = $pagelink;
         $this->view->pagenum = $pagenum;
         $this->view->site = $site;
+        $this->view->username = $username;
 
         return $this->fetch();
     }
@@ -90,11 +99,18 @@ class UserAction extends Controller {
         $request = Request::instance();
 
         $pagenum = $request->param('pagenum', 1);
-        $pagesize = $request->param('pagesize', 10);
+        $pagesize = $request->param('pagesize', 8);
         $site = $request->param('site', '');
-
+        
         $cond = "";
         $bind = [];
+        
+        $user = Session::get('user');
+        if ($user instanceof User) {
+            $cond .= " and userid = :userid ";
+            $bind['userid'] = $user->id;
+        }
+
         $posts = Dao::getListEntityByCond4Page(new Post(), $pagenum, $pagesize, $cond, $bind);
 
         $cntsql = "select count(*) from post where 1 = 1 " . $cond;

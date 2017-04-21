@@ -21,10 +21,14 @@ class ModuleAction extends Controller {
         $request = Request::instance();
 
         $pagenum = $request->param('pagenum', 1);
-        $pagesize = $request->param('pagesize', 3);
+        $pagesize = $request->param('pagesize', 10);
         $site = $request->param('site', '');
+        
         $cond = "";
         $bind = [];
+        
+        $cond .= " order by createtime desc ";
+        
         $modules = Dao::getListEntityByCond4Page(new Module(), $pagenum, $pagesize, $cond, $bind);
 
         $cntsql = "select count(*) from module where 1 = 1 " . $cond;
@@ -75,6 +79,8 @@ class ModuleAction extends Controller {
             $cond = " and moduleid = :moduleid ";
             $bind['moduleid'] = $moduleid;
         }
+        
+        $cond .= " order by createtime desc ";
         
         $posts = Dao::getListEntityByCond4Page(new Post(), $pagenum, $pagesize, $cond, $bind);
         

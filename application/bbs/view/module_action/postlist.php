@@ -11,12 +11,12 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th width="40">id</th>
+					<th width="200">标题</th>
+					<th width="180">创建时间</th>
 					<th width="60">模块</th>
 					<th width="100">作者</th>
-					<th width="200">标题</th>
 					<th width="400">描述</th>
-					<th>操作</th>
+					<th width="60">回复</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,14 +24,15 @@
 					foreach ($list as $post) {
 					?>
 						<tr class="info">
-							<td>{$post->id}</td>
+							<td>
+								<a class="showpost" data-postid="<?= $post->id ?>" href="#">{$post->title}</a>
+							</td>
+							<td>{$post->createtime}</td>
 							<td>{$post->module->title}</td>
 							<td>{$post->user->username}</td>
-							<td>{$post->title}</td>
 							<td>{$post->content}</td>
 							<td>
-								<a href="#">修改</a>
-								<a href="#">删除</a>
+								100
 							</td>
 						</tr>
 					<?php
@@ -50,6 +51,24 @@
 </div>
 <script type="text/javascript">
 	$(function(){
+		$(".showpost").on('click', function(){
+			var me = $(this);
+
+			var postid = me.data("postid");
+			
+			$.ajax({
+				"type" : "post",
+				"data" : {
+					postid : postid
+				},
+				"dataType" : "html",
+				"url" : "/index.php/bbs/post_action/showoneposthtml",
+				"success" : function(data) {
+					$("#showmodulehtml").html(data);
+				}
+			});
+		});
+		
 		$(".page").on('click', function(){
 			var href = $(this).attr('href');
 			var list = href.split('/');

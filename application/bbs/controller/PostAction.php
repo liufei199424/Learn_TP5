@@ -42,4 +42,23 @@ class PostAction extends Controller {
         
         return "success";
     }
+    
+    public function showoneposthtml () {
+        $request = Request::instance();
+        
+        $pagenum = $request->param('pagenum', 1);
+        $pagesize = $request->param('pagesize', 10);
+        $site = $request->param('site', '');
+        
+        $postid = $request->param('postid', 0);
+        $post = Post::get($postid);
+        
+//         $this->view->pagelink = $pagelink;
+        $this->view->pagenum = $pagenum;
+        $this->view->site = $site;
+        
+        $this->view->post = $post;
+        
+        return $this->fetch();
+    }
 }
