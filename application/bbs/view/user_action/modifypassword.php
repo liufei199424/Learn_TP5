@@ -60,6 +60,10 @@
     			"dataType" : "html",
     			"url" : "/index.php/bbs/user_action/modifypasswordpost",
     			"success" : function (data) {
+        			if (data == '修改成功') {
+        				$("#oldpassword").val('');
+        				$("#newpassword").val('');
+                	}
     				$("#info").html(data);
     			}	
 			});
