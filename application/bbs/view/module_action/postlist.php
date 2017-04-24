@@ -31,9 +31,7 @@
 							<td>{$post->module->title}</td>
 							<td>{$post->user->username}</td>
 							<td>{$post->content}</td>
-							<td>
-								100
-							</td>
+							<td>{$post->reply_cnt}</td>
 						</tr>
 					<?php
 					}

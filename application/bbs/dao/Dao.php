@@ -28,7 +28,12 @@ class Dao {
             return [];
         }
 
-        return $entity->all($ids);
+        $list = [];
+        foreach ($ids as $id) {
+            $list[] = $entity->get($id);
+        }
+        
+        return $list;
     }
 
     public static function loadEntity (Model $entity, $sql, $bind) {
@@ -49,7 +54,12 @@ class Dao {
             return [];
         }
 
-        return $entity->all($ids);
+        $list = [];
+        foreach ($ids as $id) {
+            $list[] = $entity->get($id);
+        }
+        
+        return $list;
     }
 
     public static function getListEntityByCond4Page (Model $entity, $pagenum, $pagesize, $cond, $bind) {
@@ -88,7 +98,12 @@ class Dao {
             return [];
         }
         
-        return $entity->all($ids);
+        $list = [];
+        foreach ($ids as $id) {
+            $list[] = $entity->get($id);
+        }
+        
+        return $list;
     }
 
     public static function loadEntityList4Page (Model $entity, $pagenum, $pagesize, $sql, $bind) {
@@ -109,7 +124,12 @@ class Dao {
             return [];
         }
         
-        return $entity->all($ids);
+        $list = [];
+        foreach ($ids as $id) {
+            $list[] = $entity->get($id);
+        }
+        
+        return $list;
     }
 
     public static function queryValue ($sql, $bind = []) {

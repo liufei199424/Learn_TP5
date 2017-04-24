@@ -15,10 +15,11 @@ class UserAction extends Controller {
     public function _initialize () {
         $user = Session::get('user');
         $this->view->user = $user;
-    }
-
-    public function test () {
-        echo "为什么会报错";
+        
+        $request = Request::instance();
+        
+        $title = $request->param('title', '');
+        $this->view->title = $title;
     }
 
     public function ulist () {
@@ -27,12 +28,12 @@ class UserAction extends Controller {
         $pagenum = $request->param('pagenum', 1);
         $pagesize = $request->param('pagesize', 10);
         $site = $request->param('site', '');
-        
+
         $username = $request->param('username', '');
-        
+
         $cond = "";
         $bind = [];
-        
+
         if ($username) {
             $cond .= " and username like :username ";
             $bind['username'] = "%{$username}%";
@@ -94,17 +95,17 @@ class UserAction extends Controller {
 
         return "修改成功";
     }
-    
+
     public function postlist () {
         $request = Request::instance();
 
         $pagenum = $request->param('pagenum', 1);
         $pagesize = $request->param('pagesize', 8);
         $site = $request->param('site', '');
-        
+
         $cond = "";
         $bind = [];
-        
+
         $user = Session::get('user');
         if ($user instanceof User) {
             $cond .= " and userid = :userid ";

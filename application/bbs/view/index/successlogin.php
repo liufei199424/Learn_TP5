@@ -32,7 +32,7 @@
     				    foreach ($modules as $a) {
     				    ?>
             				<div class="panel panel-default">
-            					<div class="panel-heading select" data-moduleid="<?= $a->id ?>">
+            					<div class="panel-heading select" data-moduleid="<?= $a->id ?>" id="module-{$a->id}">
             						 <span class="panel-title collapsed"><?= $a->title ?></span>
             					</div>
             				</div>

@@ -3,7 +3,7 @@
 namespace	app\bbs\model;
 use	think\Model;
 
-class Post extends Model {    
+class Floor extends Model {    
     //自定义初始化
     protected function initialize()
     {
@@ -13,37 +13,36 @@ class Post extends Model {
     }
     
     //	设置当前模型对应的完整数据表名称
-    protected $table = 'post';
+    protected $table = 'floor';
     
     public static function createByBiz (array $row) {
         $default = [];
     
         $default['createtime'] = date('Y-m-d H:i:s');
 		$default['updatetime'] = date('Y-m-d H:i:s');
-		$default['moduleid'] = 0;
+		$default['postid'] = 0;
 		$default['userid'] = 0;
-		$default['title'] = '';
 		$default['content'] = '';
     
         $row += $default;
     
-        $post = new Post();
-        $post->data($row);
-        $post->save();
+        $floor = new Floor();
+        $floor->data($row);
+        $floor->save();
     
-        return $post;
+        return $floor;
     }
     
     public function getTableName () {
         return $this->table;
     }
     
-    public function module ()
+    public function post ()
     {
-        return $this->hasOne('Module','id','moduleid');
+        return $this->hasOne('Post','id','postid');
     }
     
-    public function user () {
+    public function User () {
         return $this->hasOne('User','id','userid');
     } 
 }

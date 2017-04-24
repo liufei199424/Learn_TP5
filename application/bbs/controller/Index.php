@@ -15,6 +15,11 @@ class Index extends Controller
     public function _initialize () {
         $user = Session::get('user');
         $this->view->user = $user;
+        
+        $request = Request::instance();
+        
+        $title = $request->param('title', '');
+        $this->view->title = $title;
     }
     
     public function index () {

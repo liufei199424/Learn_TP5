@@ -17,3 +17,11 @@
     color:#fff
 }
 </style>
+<input type="hidden" id="title" value="<?= $title ?>">
+<script>
+	$(function(){
+		var title = $("#title").val();
+		$(".title").removeAttr('style');
+		$("#title-" + title).attr('style', 'background-color: #008DB9;color:#fff');
+	});
+</script>
