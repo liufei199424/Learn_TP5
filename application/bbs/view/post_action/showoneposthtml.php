@@ -22,13 +22,17 @@
 	<div>
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<div style="background-color: #ebf1f7;margin: 20px 0px;padding : 20px;border:1px solid #d0d9e3 ">
+				<div class="divbackgroud">
 					<div class="page-header">
         				<h4>
-        					标题：{$post->title} <br>
-        					作者：<small>{$post->user->username}</small><br>
+    						标题：{$post->title}
+    					</h4>
+        				<h5>
+							作者：<small>{$post->user->username}</small>
+						</h5>
+						<h5>
         					描述：<small>{$post->content}</small>
-        				</h4>
+        				</h5>
         			</div>
 				</div>
 			</div>
